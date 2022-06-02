@@ -1,10 +1,10 @@
 import React from 'react';
-import {ownerService} from "../_services";
+import {doctorService} from "../_services";
 import {Link} from "react-router-dom";
 import { history } from '../_helpers';
 import {changeMenu} from "../_helpers/localization";
 
-export class EditOwner extends React.Component {
+export class EditDoctor extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,31 +12,28 @@ export class EditOwner extends React.Component {
             surname: '',
             name: '',
             phone: '',
-            email: '',
-            username: ''
+            specialty: ''
         };
         this.handleIdChange = this.handleIdChange.bind(this);
         this.handleSurnameChange = this.handleSurnameChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePhoneChange = this.handlePhoneChange.bind(this);
-        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handleSpecialtyChange = this.handleSpecialtyChange.bind(this);
     }
 
     componentDidMount() {
         if(this.state.id == ''){
-            ownerService.getById(this.props.match.params.id)
+            doctorService.getById(this.props.match.params.id)
                 .then(res => res.json())
                 .then(result => this.setState({
                     id: result.id,
                     surname : result.surname,
                     name: result.name,
                     phone: result.phone,
-                    email: result.email,
-                    username: result.username
+                    specialty: result.specialty
                 }))
         }else{
-            history.push('/owners');
+            history.push('/doctors');
         }
     }
 
@@ -56,12 +53,8 @@ export class EditOwner extends React.Component {
         this.setState({ phone: event.target.value });
     }
 
-    handleEmailChange(event){
-        this.setState({ email: event.target.value });
-    }
-
-    handleUsernameChange(event){
-        this.setState({ username: event.target.value });
+    handleSpecialtyChange(event){
+        this.setState({ specialty: event.target.value });
     }
 
     render() {
@@ -86,22 +79,17 @@ export class EditOwner extends React.Component {
                         </tr>
                         <tr><td></td></tr>
                         <tr>
-                            <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Електронна пошта': 'Email'}</td>
-                            <input id="email" name="theEmail" type="text" onChange={this.handleEmailChange} value={ this.state.email }/>
-                        </tr>
-                        <tr><td></td></tr>
-                        <tr>
                             <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Телефон': 'Phone'}</td>
                             <input id="phone" name="thePhone" type="text" onChange={this.handlePhoneChange} value={ this.state.phone }/>
                         </tr>
                         <tr>
-                            <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Username': 'Username'}</td>
-                            <input id="username" name="theUsername" type="text" value={ this.state.username } readOnly={true}/>
+                            <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Спеціальність': 'Specialty'}</td>
+                            <input id="specialty" name="theSpecialty" type="text" onChange={this.handleSpecialtyChange} value={ this.state.specialty }/>
                         </tr>
                         <tr><td height="20"></td></tr>
                         <tr>
                             <td align="center" height="35"><button type="submit">{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
-                            <td><Link to="/owners">{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
+                            <td><Link to="/doctors">{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
                         </tr>
                     </div>
                 </table>
@@ -112,23 +100,21 @@ export class EditOwner extends React.Component {
         const id = Number(event.target.id.value);
         const surname = event.target.surname.value;
         const name = event.target.name.value;
-        const email = event.target.email.value;
         const phone = event.target.phone.value;
-        const username = event.target.username.value;
+        const specialty = event.target.specialty.value;
         let data = {
             "surname": surname,
             "name": name,
-            "email": email,
             "phone": phone,
-            "username": username
+            "specialty": specialty
         }
-        ownerService.editOwner(id, data)
-            .then(res => {res.json(); history.push('/owners');})
+        doctorService.editDoctor(id, data)
+            .then(res => {res.json(); history.push('/doctors');})
             .then(result => data = result)
             .catch((error) => alert( error.response.request._response ) );
 
-        history.push('/owners');
-        history.push('/owners');
+        history.push('/doctors');
+        history.push('/doctors');
         window.location.reload();
     };
 }

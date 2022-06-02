@@ -45,7 +45,7 @@ export class DetailsOwnerPage extends React.Component {
 
                 <div>
                     <h1>{localStorage.getItem('language') == 'uk'? 'Тварини': 'Animals'}</h1>
-                    <Link to="/create_animal">{localStorage.getItem('language') == 'uk'? 'Додати тварину': 'Register new animal'}</Link>
+                    <Link to={`/create_animal/${items.id}`}>{localStorage.getItem('language') == 'uk'? 'Додати тварину': 'Register new animal'}</Link>
                     <table className="table table-striped">
                         <thead>
                         <tr>

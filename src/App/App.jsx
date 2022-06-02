@@ -13,6 +13,16 @@ import { CreateOwner } from '../OwnerPage';
 import {EditOwner} from "../OwnerPage";
 import {DetailsOwnerPage} from "../OwnerPage";
 import {EditAnimal} from "../AnimalPage";
+import {CreateAnimal} from "../AnimalPage";
+import {DetailsAnimalPage} from "../AnimalPage";
+import {DoctorPage} from "../DoctorPage";
+import {CreateDoctor} from "../DoctorPage";
+import {EditDoctor} from "../DoctorPage";
+import {DetailsDoctorPage} from "../DoctorPage";
+import {ServicePage} from "../ServicePage";
+import {CreateService} from "../ServicePage";
+import {DetailsServicePage} from "../ServicePage";
+import {EditService} from "../ServicePage";
 
 class App extends React.Component {
     constructor(props) {
@@ -44,6 +54,16 @@ class App extends React.Component {
                                 <Route path="/edit_owner/:id" component={EditOwner} />
                                 <Route path="/owner/:id" component={DetailsOwnerPage} />
                                 <Route path="/edit_animal/:id" component={EditAnimal} />
+                                <Route path="/create_animal/:id" component={CreateAnimal} />
+                                <Route path="/animal/:id" component={DetailsAnimalPage} />
+                                <Route path="/doctors" component={DoctorPage} />
+                                <Route path="/create_doctor" component={CreateDoctor} />
+                                <Route path="/edit_doctor/:id" component={EditDoctor} />
+                                <Route path="/doctor/:id" component={DetailsDoctorPage} />
+                                <Route path="/services" component={ServicePage} />
+                                <Route path="/create_service" component={CreateService} />
+                                <Route path="/service/:id" component={DetailsServicePage} />
+                                <Route path="/edit_service/:id" component={EditService} />
                             </div>
                         </Router>
                     </div>

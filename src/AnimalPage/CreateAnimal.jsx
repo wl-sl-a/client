@@ -1,44 +1,24 @@
 import React from 'react';
 import {animalService} from "../_services";
 import {Link} from "react-router-dom";
-import { history } from '../_helpers';
 import {changeMenu} from "../_helpers/localization";
+import {history} from "../_helpers";
 
-export class EditAnimal extends React.Component {
+export class CreateAnimal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: '',
             name: '',
             ownerId: '',
             age: '',
-            kind: ''
+            kind: '',
+            items: []
         };
-        this.handleIdChange = this.handleIdChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleOwnerIdChange = this.handleOwnerIdChange.bind(this);
         this.handleAgeChange = this.handleAgeChange.bind(this);
         this.handleKindChange = this.handleKindChange.bind(this);
-    }
-
-    componentDidMount() {
-        if(this.state.id == ''){
-            animalService.getById(this.props.match.params.id)
-                .then(res => res.json())
-                .then(result => this.setState({
-                    id: result.id,
-                    name: result.name,
-                    ownerId: result.ownerId,
-                    age: result.age,
-                    kind: result.kind
-                }))
-        }else{
-            history.push('/owners');
-        }
-    }
-
-    handleIdChange(event){
-        this.setState({ id: event.target.value });
+        this.state.ownerId = this.props.match.params.id;
     }
 
     handleNameChange(event){
@@ -58,19 +38,13 @@ export class EditAnimal extends React.Component {
     }
 
     render() {
-        changeMenu()
         document.getElementById('menu').hidden = false
         return (
             <form onSubmit={ this.onFormSubmit }>
                 <table width="100%" cellSpacing="0" cellPadding="4">
                     <div className="form-row">
                         <tr>
-                            <td align="left" height="35" width="120">Id</td>
-                            <input id="id" name="theId" type="text" onChange={this.handleIdChange} value={ this.state.id }/>
-                        </tr>
-                        <tr><td></td></tr>
-                        <tr>
-                            <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Ім`я': 'Name'}</td>
+                            <td align="left" height="35" width="120">{localStorage.getItem('language') == 'uk'? 'Кличка': 'Name'}</td>
                             <input id="name" name="theName" type="text" onChange={this.handleNameChange} value={ this.state.name }/>
                         </tr>
                         <tr><td></td></tr>
@@ -83,6 +57,7 @@ export class EditAnimal extends React.Component {
                             <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Вік': 'Age'}</td>
                             <input id="age" name="theAge" type="text" onChange={this.handleAgeChange} value={ this.state.age }/>
                         </tr>
+                        <tr><td></td></tr>
                         <tr>
                             <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Вид': 'Kind'}</td>
                             <input id="kind" name="theKind" type="text" onChange={this.handleKindChange} value={ this.state.kind }/>
@@ -98,7 +73,6 @@ export class EditAnimal extends React.Component {
         )
     }
     onFormSubmit(event) {
-        const id = Number(event.target.id.value);
         const name = event.target.name.value;
         const ownerId = event.target.ownerId.value;
         const age = event.target.age.value;
@@ -109,11 +83,10 @@ export class EditAnimal extends React.Component {
             "age": age,
             "kind": kind
         }
-        animalService.editAnimal(id, data)
-            .then(res => {res.json(); history.push(`/owner/${ownerId}`);})
+
+        animalService.createAnimal(data)
+            .then(res => res.json())
             .then(result => data = result)
-            .catch((error) => alert( error.response.request._response ) );
-        history.push(`/owner/${ownerId}`);
-        history.push(`/owner/${ownerId}`);
+            .catch((error) => console.log( error.response.request._response ) );
     };
 }

@@ -17,6 +17,12 @@ class HomePage extends React.Component {
                 <p>
                     <Link to="/owners">Owners</Link>
                 </p>
+                <p>
+                    <Link to="/doctors">Doctors</Link>
+                </p>
+                <p>
+                    <Link to="/services">Services</Link>
+                </p>
             </div>
         );
     }
