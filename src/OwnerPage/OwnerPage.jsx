@@ -1,7 +1,6 @@
 import React from 'react';
 import { ownerService } from '../_services';
 import { Link } from 'react-router-dom';
-import {changeMenu} from "../_helpers/localization";
 
 class OwnerPage extends React.Component {
     constructor(props) {
@@ -17,14 +16,16 @@ class OwnerPage extends React.Component {
             .then(result => this.setState({items : result}))
     }
     render() {
-        changeMenu()
         document.getElementById('owners').className = 'active'
         const items = this.state.items;
         console.log(items);
         return (
             <div>
-                <h1>{localStorage.getItem('language') == 'uk'? 'Клієнти': 'Clients'}</h1>
-                <Link to="/create_owner">{localStorage.getItem('language') == 'uk'? 'Зареєструвати нового клієнта': 'Register new client'}</Link>
+                <div className="zag"><h1>{localStorage.getItem('language') == 'uk'? 'Клієнти': 'Clients'}</h1></div>
+                <br></br>
+                <br></br>
+                <Link to="/create_owner" className='option'>{localStorage.getItem('language') == 'uk'? 'Зареєструвати нового клієнта': 'Register new client'}</Link>
+                <br></br>
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -47,11 +48,11 @@ class OwnerPage extends React.Component {
                             <td>{item.email}</td>
                             <td>{item.username}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
-                                <Link to={`/owner/${item.id}`} className="btn btn-sm btn-primary mr-1">{localStorage.getItem('language') == 'uk'? 'ДЕТАЛІ': 'DETAILS'}</Link>
-                                <button onClick={(e)=>deleteOwner(item.id, e)} className="btn btn-sm btn-danger btn-delete-user">
+                                <Link to={`/owner/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'ДЕТАЛІ': 'DETAILS'}</Link>
+                                <button onClick={(e)=>deleteOwner(item.id, e)} className="option">
                                     {localStorage.getItem('language') == 'uk'? 'ВИДАЛИТИ': 'DELETE'}
                                 </button>
-                                <Link to={`/edit_owner/${item.id}`} className="btn btn-sm btn-primary mr-1">{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
+                                <Link to={`/edit_owner/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
                             </td>
                         </tr>
                     ))}

@@ -1,7 +1,6 @@
 import React from 'react';
 import {servService} from "../_services";
 import {Link} from "react-router-dom";
-import {changeMenu} from "../_helpers/localization";
 
 export class CreateService extends React.Component {
     constructor(props) {

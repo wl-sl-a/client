@@ -1,7 +1,6 @@
 import React from 'react';
 import {ownerService} from "../_services";
 import {Link} from "react-router-dom";
-import {changeMenu} from "../_helpers/localization";
 
 export class CreateOwner extends React.Component {
     constructor(props) {

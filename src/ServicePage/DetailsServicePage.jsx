@@ -1,7 +1,6 @@
 import React from 'react';
 import {servService} from "../_services";
 import {Link} from "react-router-dom";
-import {changeMenu} from "../_helpers/localization";
 
 export class DetailsServicePage extends React.Component {
     constructor(props) {
@@ -18,7 +17,6 @@ export class DetailsServicePage extends React.Component {
     }
 
     render() {
-        changeMenu()
         document.getElementById('menu').hidden = false
         const items = this.state.items;
         console.log(items);

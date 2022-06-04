@@ -2,7 +2,6 @@ import React from 'react';
 import {ownerService} from "../_services";
 import {Link} from "react-router-dom";
 import { history } from '../_helpers';
-import {changeMenu} from "../_helpers/localization";
 
 export class EditOwner extends React.Component {
     constructor(props) {

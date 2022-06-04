@@ -1,7 +1,6 @@
 import React from 'react';
 import {animalService} from "../_services";
 import {Link} from "react-router-dom";
-import {changeMenu} from "../_helpers/localization";
 import {history} from "../_helpers";
 
 export class CreateAnimal extends React.Component {

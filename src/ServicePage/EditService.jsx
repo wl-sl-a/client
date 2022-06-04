@@ -2,7 +2,6 @@ import React from 'react';
 import {servService} from "../_services";
 import {Link} from "react-router-dom";
 import { history } from '../_helpers';
-import {changeMenu} from "../_helpers/localization";
 
 export class EditService extends React.Component {
     constructor(props) {
@@ -51,7 +50,6 @@ export class EditService extends React.Component {
     }
 
     render() {
-        changeMenu()
         document.getElementById('menu').hidden = false
         return (
             <form onSubmit={ this.onFormSubmit }>

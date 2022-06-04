@@ -1,7 +1,6 @@
 import React from 'react';
 import { doctorService } from '../_services';
 import { Link } from 'react-router-dom';
-import {changeMenu} from "../_helpers/localization";
 
 class DoctorPage extends React.Component {
     constructor(props) {
@@ -17,7 +16,6 @@ class DoctorPage extends React.Component {
             .then(result => this.setState({items : result}))
     }
     render() {
-        changeMenu()
         document.getElementById('doctors').className = 'active'
         const items = this.state.items;
         console.log(items);

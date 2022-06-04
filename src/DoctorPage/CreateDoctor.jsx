@@ -1,7 +1,6 @@
 import React from 'react';
 import {doctorService} from "../_services";
 import {Link} from "react-router-dom";
-import {changeMenu} from "../_helpers/localization";
 
 export class CreateDoctor extends React.Component {
     constructor(props) {

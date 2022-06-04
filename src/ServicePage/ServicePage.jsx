@@ -1,7 +1,7 @@
 import React from 'react';
 import { servService } from '../_services';
 import { Link } from 'react-router-dom';
-import {changeMenu} from "../_helpers/localization";
+
 
 class ServicePage extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class ServicePage extends React.Component {
             .then(result => this.setState({items : result}))
     }
     render() {
-        changeMenu()
+
         document.getElementById('services').className = 'active'
         const items = this.state.items;
         console.log(items);

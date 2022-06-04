@@ -1,7 +1,6 @@
 import React from 'react';
 import {ownerService, animalService} from "../_services";
 import {Link} from "react-router-dom";
-import {changeMenu} from "../_helpers/localization";
 
 export class DetailsOwnerPage extends React.Component {
     constructor(props) {
@@ -23,7 +22,6 @@ export class DetailsOwnerPage extends React.Component {
     }
 
     render() {
-        changeMenu()
         document.getElementById('menu').hidden = false
         const items = this.state.items;
         const animals = this.state.animals;
@@ -31,21 +29,19 @@ export class DetailsOwnerPage extends React.Component {
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h1>{localStorage.getItem('language') == 'uk'? 'Деталі': 'Details'}</h1>
-                <ul>
+                <ul className='push'>
                     <li>Id: {items.id}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Прізвище': 'Surname'}: {items.surname}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Ім`я': 'Name'}: {items.name}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Телефон': 'Phone'}: {items.phone}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Електронна пошта': 'Email'}: {items.email}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Логін': 'Username'}: {items.username}</li>
-                    <button>
-                        <Link to={`/owners`}>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link>
-                    </button>
                 </ul>
-
+                    <Link to={`/owners`} className='option'>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link>
+                <br></br><br></br><br></br>
                 <div>
                     <h1>{localStorage.getItem('language') == 'uk'? 'Тварини': 'Animals'}</h1>
-                    <Link to={`/create_animal/${items.id}`}>{localStorage.getItem('language') == 'uk'? 'Додати тварину': 'Register new animal'}</Link>
+                    <Link to={`/create_animal/${items.id}`} className='option'>{localStorage.getItem('language') == 'uk'? 'Додати тварину': 'Register new animal'}</Link>
                     <table className="table table-striped">
                         <thead>
                         <tr>
@@ -66,11 +62,11 @@ export class DetailsOwnerPage extends React.Component {
                                 <td>{item.age}</td>
                                 <td>{item.kind}</td>
                                 <td style={{ whiteSpace: 'nowrap' }}>
-                                    <Link to={`/animal/${item.id}`} className="btn btn-sm btn-primary mr-1">{localStorage.getItem('language') == 'uk'? 'ДЕТАЛІ': 'DETAILS'}</Link>
-                                    <button onClick={(e)=>deleteAnimal(item.id, e)} className="btn btn-sm btn-danger btn-delete-user">
+                                    <Link to={`/animal/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'ДЕТАЛІ': 'DETAILS'}</Link>
+                                    <button onClick={(e)=>deleteAnimal(item.id, e)} className="option">
                                         {localStorage.getItem('language') == 'uk'? 'ВИДАЛИТИ': 'DELETE'}
                                     </button>
-                                    <Link to={`/edit_animal/${item.id}`} className="btn btn-sm btn-primary mr-1">{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
+                                    <Link to={`/edit_animal/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
                                 </td>
                             </tr>
                         ))}

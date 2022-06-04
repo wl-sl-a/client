@@ -1,28 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {changeMenu} from "../_helpers/localization";
 
 class HomePage extends React.Component {
 
     render() {
-        changeMenu()
-        document.getElementById('menu').hidden = false
-        document.getElementById('home').className = 'active'
+
         const { user, users } = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
-                <p>
-                    <Link to="/login">Logout</Link>
-                </p>
-                <p>
-                    <Link to="/owners">Owners</Link>
-                </p>
-                <p>
-                    <Link to="/doctors">Doctors</Link>
-                </p>
-                <p>
-                    <Link to="/services">Services</Link>
-                </p>
+            <div>
+                <nav className="menu">
+                    <input checked="checked" className="menu-toggler" type="checkbox"/>
+                        <ul>
+                            <li className="menu-item">
+                                <a href="/" id="homeM"><br/>Home</a>
+                            </li>
+                            <li className="menu-item">
+                                <a href="/owners" id="ownerM"><br/>Owners</a>
+                            </li>
+                            <li className="menu-item">
+                                <a href="/doctors" id="doctorM"><br/>Doctors</a>
+                            </li>
+                            <li className="menu-item">
+                                <a href="/services" id="serviceM"><br/>Services</a>
+                            </li>
+                            <li className="menu-item">
+                                <a href="#" id="appointmentM"><br/>Appoinment</a>
+                            </li>
+                            <li className="menu-item">
+                                <a href="#"></a>
+                            </li>
+                        </ul>
+                </nav>
             </div>
         );
     }
