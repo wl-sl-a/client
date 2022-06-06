@@ -65,8 +65,8 @@ class OwnerPage extends React.Component {
 function deleteOwner(id, e) {
     if(window.confirm(`${localStorage.getItem('language') == 'uk'? 'Ви впевнені, що хочете видалити дані про клієнта номер ':
         'Are you sure that you want delete client number '}${id}?`)){
-        ownerService.deleteOwner(id).then(() => this.setState({items: this.state.items.filter(x=>x.id !== id)}))
-            .then(()=>window.location.reload());
+        ownerService.deleteOwner(id).then(r => console.log(r));
+        alert("Data is deleted")
         window.location.reload();
     }
 }

@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 class HomePage extends React.Component {
 
     render() {
-
         const { user, users } = this.props;
         return (
             <div>
@@ -33,6 +31,8 @@ class HomePage extends React.Component {
                 </nav>
             </div>
         );
+
     }
 }
+
 export { HomePage };

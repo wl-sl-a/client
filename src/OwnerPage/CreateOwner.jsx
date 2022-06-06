@@ -98,6 +98,5 @@ export class CreateOwner extends React.Component {
             .then(res => res.json())
             .then(result => data = result)
             .catch((error) => console.log( error.response.request._response ) );
-        window.location.assign('http://localhost:8080/aquarium');
     };
 }

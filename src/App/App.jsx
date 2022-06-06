@@ -23,6 +23,15 @@ import {ServicePage} from "../ServicePage";
 import {CreateService} from "../ServicePage";
 import {DetailsServicePage} from "../ServicePage";
 import {EditService} from "../ServicePage";
+import {CreateAppointment} from "../AppointmentPage";
+import {VisitingPage} from "../VisitingPage";
+import {CreateVisiting} from "../VisitingPage";
+import {EditVisiting} from "../VisitingPage";
+import {DetailsVisitingPage} from "../VisitingPage";
+import {CreateDirection} from "../DirectionPage";
+import {EditDirection} from "../DirectionPage";
+import {CreateSchedule} from "../SchedulePage";
+import {EditSchedule} from "../SchedulePage";
 
 class App extends React.Component {
     constructor(props) {
@@ -64,6 +73,15 @@ class App extends React.Component {
                                 <Route path="/create_service" component={CreateService} />
                                 <Route path="/service/:id" component={DetailsServicePage} />
                                 <Route path="/edit_service/:id" component={EditService} />
+                                <Route path="/create_appointment/:id" component={EditService} />
+                                <Route path="/visitings/:id" component={VisitingPage} />
+                                <Route path="/create_visiting/doctor/:id" component={CreateVisiting} />
+                                <Route path="/edit_visiting/:id" component={EditVisiting} />
+                                <Route path="/visiting/:id" component={DetailsVisitingPage} />
+                                <Route path="/create_direction/:id" component={CreateDirection} />
+                                <Route path="/edit_direction/:id" component={EditDirection} />
+                                <Route path="/create_schedule/:id" component={CreateSchedule} />
+                                <Route path="/edit_schedule/:id" component={EditSchedule} />
                             </div>
                         </Router>
                     </div>

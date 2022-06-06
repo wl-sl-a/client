@@ -23,8 +23,11 @@ class ServicePage extends React.Component {
         console.log(items);
         return (
             <div>
-                <h1>{localStorage.getItem('language') == 'uk'? 'Реєстр послуг': 'Services'}</h1>
-                <Link to="/create_service">{localStorage.getItem('language') == 'uk'? 'Додати нову послугу': 'Add new service'}</Link>
+                <div className="zag"><h1>{localStorage.getItem('language') == 'uk'? 'Реєстр послуг': 'Services'}</h1></div>
+                <br></br>
+                <br></br>
+                <Link to="/create_service" className="option">{localStorage.getItem('language') == 'uk'? 'Додати нову послугу': 'Add new service'}</Link>
+                <br></br>
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -41,11 +44,11 @@ class ServicePage extends React.Component {
                             <td>{item.name}</td>
                             <td>{item.price}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
-                                <Link to={`/service/${item.id}`} className="btn btn-sm btn-primary mr-1">{localStorage.getItem('language') == 'uk'? 'ДЕТАЛІ': 'DETAILS'}</Link>
-                                <button onClick={(e)=>deleteService(item.id, e)} className="btn btn-sm btn-danger btn-delete-user">
+                                <Link to={`/service/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'ДЕТАЛІ': 'DETAILS'}</Link>
+                                <button onClick={(e)=>deleteService(item.id, e)} className="option">
                                     {localStorage.getItem('language') == 'uk'? 'ВИДАЛИТИ': 'DELETE'}
                                 </button>
-                                <Link to={`/edit_service/${item.id}`} className="btn btn-sm btn-primary mr-1">{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
+                                <Link to={`/edit_service/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
                             </td>
                         </tr>
                     ))}

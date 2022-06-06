@@ -21,8 +21,10 @@ class DoctorPage extends React.Component {
         console.log(items);
         return (
             <div>
-                <h1>{localStorage.getItem('language') == 'uk'? 'Лікарі': 'Doctors'}</h1>
-                <Link to="/create_doctor">{localStorage.getItem('language') == 'uk'? 'Зареєструвати нового лікаря': 'Register new doctor'}</Link>
+                <div className="zag"><h1>{localStorage.getItem('language') == 'uk'? 'Лікарі': 'Doctors'}</h1></div>
+                <br></br>
+                <br></br>
+                <Link to="/create_doctor" className="option">{localStorage.getItem('language') == 'uk'? 'Зареєструвати нового лікаря': 'Register new doctor'}</Link>
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -43,11 +45,13 @@ class DoctorPage extends React.Component {
                             <td>{item.phone} </td>
                             <td>{item.specialty}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
-                                <Link to={`/doctor/${item.id}`} className="btn btn-sm btn-primary mr-1">{localStorage.getItem('language') == 'uk'? 'ДЕТАЛІ': 'DETAILS'}</Link>
-                                <button onClick={(e)=>deleteDoctor(item.id, e)} className="btn btn-sm btn-danger btn-delete-user">
+                                <Link to={`/doctor/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'ДЕТАЛІ': 'DETAILS'}</Link>
+                                <button onClick={(e)=>deleteDoctor(item.id, e)} className="option">
                                     {localStorage.getItem('language') == 'uk'? 'ВИДАЛИТИ': 'DELETE'}
                                 </button>
-                                <Link to={`/edit_doctor/${item.id}`} className="btn btn-sm btn-primary mr-1">{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
+                                <Link to={`/edit_doctor/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
+                                <Link to={`/make_appointment/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'ЗАПИСАТИ НА ПРИЙОМ': 'MAKE APPOINTMENT'}</Link>
+                                <Link to={`/visitings/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'ПОКАЗАТИ ПРИЙОМИ': 'SHOW VISITING'}</Link>
                             </td>
                         </tr>
                     ))}

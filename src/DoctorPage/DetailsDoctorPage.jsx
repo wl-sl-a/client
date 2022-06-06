@@ -28,26 +28,26 @@ export class DetailsDoctorPage extends React.Component {
         console.log(schedules);
         return (
             <div className="col-md-6 col-md-offset-3">
+                <div>
                 <h1>{localStorage.getItem('language') == 'uk'? 'Деталі': 'Details'}</h1>
-                <ul>
+                <ul className='push'>
                     <li>Id: {items.id}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Прізвище': 'Surname'}: {items.surname}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Ім`я': 'Name'}: {items.name}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Телефон': 'Phone'}: {items.phone}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Спеціальність': 'Specialty'}: {items.specialty}</li>
-                    <button>
-                        <Link to={`/doctors`}>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link>
-                    </button>
                 </ul>
-                <h2>{localStorage.getItem('language') == 'uk'? 'Розклад': 'Schedule'}</h2>
+                <Link to={`/doctors`} className='option'>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link>
+                <br></br><br></br><br></br>
+                </div>
+                <h1>{localStorage.getItem('language') == 'uk'? 'Розклад': 'Schedule'}</h1>
                 <div>
-                    <Link to={`/create_schedule/${items.id}`}>{localStorage.getItem('language') == 'uk'? 'Додати розклад': 'Register new schedule'}</Link>
+                    <Link to={`/create_schedule/${items.id}`} className='option'>{localStorage.getItem('language') == 'uk'? 'Додати розклад': 'Register new schedule'}</Link>
                     <table className="table table-striped" width={'100%'}>
                         <thead>
                         <tr>
                             <th style={{ width: '10%' }}>{localStorage.getItem('language') == 'uk'? 'День тижня': 'Weekday'}</th>
-                            <th style={{ width: '90%' }}>{localStorage.getItem('language') == 'uk'? 'Початок': 'Start'}</th>
-                            <th style={{ width: '90%' }}>{localStorage.getItem('language') == 'uk'? 'Кінець': 'End'}</th>
+                            <th style={{ width: '20%' }}>{localStorage.getItem('language') == 'uk'? 'Час': 'Time'}</th>
                         </tr>
 
                         </thead>
@@ -55,14 +55,12 @@ export class DetailsDoctorPage extends React.Component {
                         {schedules.map(item => (
                             <tr key={item.id}>
                                 <td>{item.weekday} </td>
-                                <td>{item.startTime}</td>
-                                <td>{item.endTime}</td>
+                                <td>{item.startTime} - {item.endTime}</td>
                                 <td style={{ whiteSpace: 'nowrap' }}>
-                                    <Link to={`/schedule/${item.id}`} className="btn btn-sm btn-primary mr-1">{localStorage.getItem('language') == 'uk'? 'ДЕТАЛІ': 'DETAILS'}</Link>
-                                    <button onClick={(e)=>deleteSchedule(item.id, e)} className="btn btn-sm btn-danger btn-delete-user">
+                                    <button onClick={(e)=>deleteSchedule(item.id, e)} className='option'>
                                         {localStorage.getItem('language') == 'uk'? 'ВИДАЛИТИ': 'DELETE'}
                                     </button>
-                                    <Link to={`/edit_schedule/${item.id}`} className="btn btn-sm btn-primary mr-1">{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
+                                    <Link to={`/edit_schedule/${item.id}`} className='option'>{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
                                 </td>
                             </tr>
                         ))}

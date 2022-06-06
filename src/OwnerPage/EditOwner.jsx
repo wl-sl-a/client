@@ -64,7 +64,6 @@ export class EditOwner extends React.Component {
     }
 
     render() {
-        changeMenu()
         document.getElementById('menu').hidden = false
         return (
             <form onSubmit={ this.onFormSubmit }>
@@ -122,10 +121,9 @@ export class EditOwner extends React.Component {
             "username": username
         }
         ownerService.editOwner(id, data)
-            .then(res => {res.json(); history.push('/owners');})
+            .then(res => res.json())
             .then(result => data = result)
             .catch((error) => alert( error.response.request._response ) );
-
         history.push('/owners');
         history.push('/owners');
         window.location.reload();

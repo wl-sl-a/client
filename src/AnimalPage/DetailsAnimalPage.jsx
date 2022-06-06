@@ -23,7 +23,7 @@ export class DetailsAnimalPage extends React.Component {
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h1>{localStorage.getItem('language') == 'uk'? 'Деталі': 'Details'}</h1>
-                <ul>
+                <ul className='push'>
                     <li>Id: {items.id}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Кличка': 'Name'}: {items.name}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Власник': 'OwnerId'}: {items.ownerId}</li>

@@ -23,15 +23,13 @@ export class DetailsServicePage extends React.Component {
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h1>{localStorage.getItem('language') == 'uk'? 'Деталі': 'Details'}</h1>
-                <ul>
+                <ul className='push'>
                     <li>Id: {items.id}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Назва': 'Name'}: {items.name}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Ціна': 'Price'}: {items.price}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Інформація': 'Info'}: {items.info}</li>
-                    <button>
-                        <Link to={`/services`}>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link>
-                    </button>
                 </ul>
+                <Link to={`/services`} className="option">{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link>
             </div>
         )
     }

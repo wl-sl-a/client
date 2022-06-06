@@ -93,7 +93,7 @@ export class EditService extends React.Component {
             "info": info
         }
         servService.editService(id, data)
-            .then(res => {res.json(); history.push('/services');})
+            .then(res => {res.json();})
             .then(result => data = result)
             .catch((error) => alert( error.response.request._response ) );
 
