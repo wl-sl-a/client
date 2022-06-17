@@ -1,5 +1,5 @@
 import React from 'react';
-import {animalService, doctorService, scheduleService} from "../_services";
+import {appointmentService, doctorService, scheduleService} from "../_services";
 import {Link} from "react-router-dom";
 
 
@@ -8,8 +8,21 @@ export class DetailsDoctorPage extends React.Component {
         super(props);
         this.state = {
             items: [],
-            schedules: []
+            schedules: [],
+            dates: [],
+            date: '',
+            appointments: [],
+            appointment: ''
         };
+        this.handleDateChange = this.handleDateChange.bind(this);
+    }
+
+    handleDateChange(event){
+        this.setState({ date: event.target.value });
+
+        appointmentService.getAppointmentsByDate(this.props.match.params.id, event.target.value)
+            .then(res => res.json())
+            .then(result => this.setState({appointments : result}))
     }
 
     componentDidMount() {
@@ -20,11 +33,17 @@ export class DetailsDoctorPage extends React.Component {
         scheduleService.getSchedulesByDoctorId(this.props.match.params.id)
             .then(res => res.json())
             .then(result => this.setState({schedules : result}))
+
+        scheduleService.getDates(this.props.match.params.id)
+            .then(res => res.json())
+            .then(result => this.setState({dates : result}))
     }
 
     render() {
         const items = this.state.items;
         const schedules = this.state.schedules;
+        const dates = this.state.dates;
+        const appointments = this.state.appointments;
         console.log(schedules);
         return (
             <div className="col-md-6 col-md-offset-3">
@@ -67,6 +86,37 @@ export class DetailsDoctorPage extends React.Component {
                         </tbody>
                     </table>
                 </div>
+                <h1>{localStorage.getItem('language') == 'uk'? 'Записи на прийом': 'Appointments'}</h1>
+                <select id="date" name="theDate" type="text" onChange={this.handleDateChange} value={ this.state.date }>
+                    {
+                        dates.map(item =>(
+                            <option key={item} value={item}>{item}</option>
+                        ))
+                    }
+                </select>
+                <br></br>
+                <table className="table table-striped" width={'100%'}>
+                    <thead>
+                    <tr>
+                        <th style={{ width: '10%' }}>{localStorage.getItem('language') == 'uk'? 'Id': 'Id'}</th>
+                        <th style={{ width: '20%' }}>{localStorage.getItem('language') == 'uk'? 'Час': 'Time'}</th>
+                        <th style={{ width: '20%' }}>{localStorage.getItem('language') == 'uk'? 'Статус': 'Status'}</th>
+                        <th style={{ width: '20%' }}>{localStorage.getItem('language') == 'uk'? 'Запис': 'Appointment'}</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    {appointments.map(item => (
+                        <tr key={item.id} className={item.status}>
+                            <td>{item.id} </td>
+                            <td>{item.time}</td>
+                            <td>{item.status} </td>
+                            <td>{item.appointment}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+
             </div>
         )
     }

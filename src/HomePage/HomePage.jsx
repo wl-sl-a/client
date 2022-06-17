@@ -1,8 +1,11 @@
 import React from 'react';
+import Chart from "./Chart";
+
 
 class HomePage extends React.Component {
 
     render() {
+
         const { user, users } = this.props;
         return (
             <div>
@@ -26,6 +29,7 @@ class HomePage extends React.Component {
                             </li>
                             <li className="menu-item">
                                 <a href="#"></a>
+                                <Chart />
                             </li>
                         </ul>
                 </nav>

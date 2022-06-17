@@ -1,14 +1,30 @@
 import React from 'react';
-import { ownerService } from '../_services';
+import {ownerService} from '../_services';
 import { Link } from 'react-router-dom';
 
 class OwnerPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: []
+            items: [],
+            param: ''
         };
+        this.handleSearchChange = this.handleSearchChange.bind(this);
     }
+
+    handleSearchChange(event){
+        this.setState({ param: event.target.value });
+        if(event.target.value.length > 0){
+            ownerService.searchOwner(event.target.value)
+                .then(res => res.json())
+                .then(result => this.setState({items : result}))
+        } else{
+            ownerService.getAll()
+                .then(res => res.json())
+                .then(result => this.setState({items : result}))
+        }
+    }
+
 
     componentDidMount() {
         ownerService.getAll()
@@ -22,6 +38,14 @@ class OwnerPage extends React.Component {
         return (
             <div>
                 <div className="zag"><h1>{localStorage.getItem('language') == 'uk'? 'Клієнти': 'Clients'}</h1></div>
+                <div className="Search">
+                    <span className="SearchSpan"><div className='fa fa-search'></div></span>
+                    <input
+                        className="SearchInput"
+                        type="text"
+                        onChange={this.handleSearchChange}
+                    />
+                </div>
                 <br></br>
                 <br></br>
                 <Link to="/create_owner" className='option'>{localStorage.getItem('language') == 'uk'? 'Зареєструвати нового клієнта': 'Register new client'}</Link>

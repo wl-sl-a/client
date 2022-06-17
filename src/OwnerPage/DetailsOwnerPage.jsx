@@ -67,6 +67,7 @@ export class DetailsOwnerPage extends React.Component {
                                         {localStorage.getItem('language') == 'uk'? 'ВИДАЛИТИ': 'DELETE'}
                                     </button>
                                     <Link to={`/edit_animal/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
+                                    <Link to={`/step_one/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'ЗАПИСАТИ НА ПРИЙОМ': 'MAKE APPOINTMENT'}</Link>
                                 </td>
                             </tr>
                         ))}

@@ -5,7 +5,8 @@ export const ownerService = {
     getById,
     deleteOwner,
     createOwner,
-    editOwner
+    editOwner,
+    searchOwner
 };
 
 function getAll() {
@@ -49,4 +50,13 @@ function editOwner(id,body){
         body: JSON.stringify(body)
     };
     return fetch(config.apiUrl + '/api/Owner/' + id, requestOptions);
+}
+
+function searchOwner(param) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(config.apiUrl + '/api/Owner/search/' + param, requestOptions);
 }

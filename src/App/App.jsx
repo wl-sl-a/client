@@ -23,7 +23,6 @@ import {ServicePage} from "../ServicePage";
 import {CreateService} from "../ServicePage";
 import {DetailsServicePage} from "../ServicePage";
 import {EditService} from "../ServicePage";
-import {CreateAppointment} from "../AppointmentPage";
 import {VisitingPage} from "../VisitingPage";
 import {CreateVisiting} from "../VisitingPage";
 import {EditVisiting} from "../VisitingPage";
@@ -32,6 +31,9 @@ import {CreateDirection} from "../DirectionPage";
 import {EditDirection} from "../DirectionPage";
 import {CreateSchedule} from "../SchedulePage";
 import {EditSchedule} from "../SchedulePage";
+import {StepOnePage} from "../AppointmentPage";
+import {StepTwoPage} from "../AppointmentPage";
+import {StepThreePage} from "../AppointmentPage";
 
 class App extends React.Component {
     constructor(props) {
@@ -82,6 +84,9 @@ class App extends React.Component {
                                 <Route path="/edit_direction/:id" component={EditDirection} />
                                 <Route path="/create_schedule/:id" component={CreateSchedule} />
                                 <Route path="/edit_schedule/:id" component={EditSchedule} />
+                                <Route path="/step_one/:aid" component={StepOnePage} />
+                                <Route path="/step_two/:aid/:did" component={StepTwoPage} />
+                                <Route path="/step_three/:aid/:did/:sid" component={StepThreePage} />
                             </div>
                         </Router>
                     </div>

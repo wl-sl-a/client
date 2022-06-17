@@ -6,3 +6,4 @@ export * from './serv.service';
 export * from './schedule.service';
 export * from './visiting.service';
 export * from './direction.service';
+export * from './appointment.service'
