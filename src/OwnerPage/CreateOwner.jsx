@@ -43,22 +43,22 @@ export class CreateOwner extends React.Component {
     render() {
         document.getElementById('menu').hidden = false
         return (
-            <form onSubmit={ this.onFormSubmit }>
+            <form onSubmit={ this.onFormSubmit } >
                 <table width="100%" cellSpacing="0" cellPadding="4">
-                    <div className="form-row">
+                    <div className="form-row" align='center'>
                         <tr>
                             <td align="left" height="35" width="120">{localStorage.getItem('language') == 'uk'? 'Прізвище': 'Surname'}</td>
-                            <input id="surname" name="theSurname" type="text" onChange={this.handleSurnameChange} value={ this.state.surname }/>
+                            <input id="surname" name="theSurname" type="text" onChange={this.handleSurnameChange} value={ this.state.surname } className="form-control"/>
                         </tr>
                         <tr><td></td></tr>
                         <tr>
                             <td align="left" height="35" width="120">{localStorage.getItem('language') == 'uk'? 'Ім`я': 'Name'}</td>
-                            <input id="name" name="theName" type="text" onChange={this.handleNameChange} value={ this.state.name }/>
+                            <input id="name" name="theName" type="text" onChange={this.handleNameChange} value={ this.state.name } />
                         </tr>
                         <tr><td></td></tr>
                         <tr>
                             <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Електронна пошта': 'Email'}</td>
-                            <input id="email" name="theEmail" type="text" onChange={this.handleEmailChange} value={ this.state.email }/>
+                            <input id="email" name="theEmail" type="text" onChange={this.handleEmailChange} value={ this.state.email } />
                         </tr>
                         <tr><td></td></tr>
                         <tr>
@@ -72,8 +72,8 @@ export class CreateOwner extends React.Component {
                         </tr>
                         <tr><td height="20"></td></tr>
                         <tr>
-                            <td align="center" height="35"><button type="submit">{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
-                            <td><Link to="/owners">{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
+                            <td align="center" height="35"><button type="submit" className="option">{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
+                            <td><Link to="/owners" className="option">{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
                         </tr>
                     </div>
                 </table>
@@ -98,5 +98,6 @@ export class CreateOwner extends React.Component {
             .then(res => res.json())
             .then(result => data = result)
             .catch((error) => console.log( error.response.request._response ) );
+        alert(1)
     };
 }
