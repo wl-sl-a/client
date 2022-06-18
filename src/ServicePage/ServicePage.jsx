@@ -1,5 +1,5 @@
 import React from 'react';
-import { servService } from '../_services';
+import {servService} from '../_services';
 import { Link } from 'react-router-dom';
 
 
@@ -7,8 +7,23 @@ class ServicePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: []
+            items: [],
+            param: ''
         };
+        this.handleSearchChange = this.handleSearchChange.bind(this);
+    }
+
+    handleSearchChange(event){
+        this.setState({ param: event.target.value });
+        if(event.target.value.length > 0){
+            servService.searchService(event.target.value)
+                .then(res => res.json())
+                .then(result => this.setState({items : result}))
+        } else{
+            servService.getAll()
+                .then(res => res.json())
+                .then(result => this.setState({items : result}))
+        }
     }
 
     componentDidMount() {
@@ -24,6 +39,14 @@ class ServicePage extends React.Component {
         return (
             <div>
                 <div className="zag"><h1>{localStorage.getItem('language') == 'uk'? 'Реєстр послуг': 'Services'}</h1></div>
+                <div className="Search">
+                    <span className="SearchSpan"><div className='fa fa-search'></div></span>
+                    <input
+                        className="SearchInput"
+                        type="text"
+                        onChange={this.handleSearchChange}
+                    />
+                </div>
                 <br></br>
                 <br></br>
                 <Link to="/create_service" className="option">{localStorage.getItem('language') == 'uk'? 'Додати нову послугу': 'Add new service'}</Link>

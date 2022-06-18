@@ -5,7 +5,8 @@ export const doctorService = {
     getById,
     deleteDoctor,
     createDoctor,
-    editDoctor
+    editDoctor,
+    searchDoctor
 };
 
 function getAll() {
@@ -49,4 +50,13 @@ function editDoctor(id,body){
         body: JSON.stringify(body)
     };
     return fetch(config.apiUrl + '/api/Doctor/' + id, requestOptions);
+}
+
+function searchDoctor(param) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(config.apiUrl + '/api/Doctor/search/' + param, requestOptions);
 }

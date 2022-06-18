@@ -9,7 +9,10 @@ export const appointmentService = {
     getAppointmentsByAnimalId,
     getAppointmentsByDoctorId,
     getAppointmentsByDate,
-    getWorkloadByDate
+    getWorkloadByDate,
+    confirmAppointment,
+    cancelAppointment,
+    filterAll
 };
 
 function getAll() {
@@ -91,4 +94,30 @@ function getWorkloadByDate(doctor_id, date) {
     };
 
     return fetch(config.apiUrl + '/api/Appointment/workload/' + doctor_id, requestOptions);
+}
+
+function confirmAppointment(id){
+    const requestOptions = {
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    };
+    return fetch(config.apiUrl + '/api/Appointment/confirm/' + id, requestOptions);
+}
+
+function cancelAppointment(id){
+    const requestOptions = {
+        method: 'PUT',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    };
+    return fetch(config.apiUrl + '/api/Appointment/cancel/' + id, requestOptions);
+}
+
+function filterAll(body) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+    };
+
+    return fetch(config.apiUrl + '/api/Appointment/filter', requestOptions);
 }

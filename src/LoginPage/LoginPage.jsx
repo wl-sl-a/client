@@ -36,7 +36,7 @@ class LoginPage extends React.Component {
     }
 
     render() {
-
+        document.getElementById('menu').hidden = true
         const { loggingIn } = this.props;
         const { username, password, submitted } = this.state;
         return (

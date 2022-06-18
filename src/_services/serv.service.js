@@ -5,7 +5,8 @@ export const servService = {
     getById,
     deleteService,
     createService,
-    editService
+    editService,
+    searchService
 };
 
 function getAll() {
@@ -49,4 +50,13 @@ function editService(id,body){
         body: JSON.stringify(body)
     };
     return fetch(config.apiUrl + '/api/Service/' + id, requestOptions);
+}
+
+function searchService(param) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(config.apiUrl + '/api/Service/search/' + param, requestOptions);
 }

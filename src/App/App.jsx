@@ -34,6 +34,7 @@ import {EditSchedule} from "../SchedulePage";
 import {StepOnePage} from "../AppointmentPage";
 import {StepTwoPage} from "../AppointmentPage";
 import {StepThreePage} from "../AppointmentPage";
+import {AppointmentPage} from "../AppointmentPage";
 
 class App extends React.Component {
     constructor(props) {
@@ -87,6 +88,7 @@ class App extends React.Component {
                                 <Route path="/step_one/:aid" component={StepOnePage} />
                                 <Route path="/step_two/:aid/:did" component={StepTwoPage} />
                                 <Route path="/step_three/:aid/:did/:sid" component={StepThreePage} />
+                                <Route path="/appointments" component={AppointmentPage} />
                             </div>
                         </Router>
                     </div>

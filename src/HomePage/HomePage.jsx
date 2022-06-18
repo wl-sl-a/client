@@ -5,6 +5,7 @@ import Chart from "./Chart";
 class HomePage extends React.Component {
 
     render() {
+        document.getElementById('menu').hidden = false
         return (
             <div className="portfolio-wrap">
                 <div className="portfolio-item">
