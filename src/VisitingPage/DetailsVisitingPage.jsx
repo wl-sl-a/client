@@ -1,5 +1,5 @@
 import React from 'react';
-import {visitingService, directionService, animalService} from "../_services";
+import {visitingService, directionService} from "../_services";
 import {Link} from "react-router-dom";
 
 export class DetailsVisitingPage extends React.Component {
@@ -41,6 +41,9 @@ export class DetailsVisitingPage extends React.Component {
                     <li>{localStorage.getItem('language') == 'uk'? 'Обстеження': 'Examination'}: {items.examination}</li>
                     <li>{localStorage.getItem('language') == 'uk'? 'Медикаменти': 'Medicines'}: {items.medicines}</li>
                 </ul>
+                <button onClick={(e)=>printVisiting(items.id, e)} className="option">
+                    {localStorage.getItem('language') == 'uk'? 'ДРУКУВАТИ': 'PRINT'}
+                </button>
                 <Link to={`/visitings/${items.doctorId}`} className='option'>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link>
                 <br></br><br></br><br></br>
                 <div>
@@ -66,6 +69,9 @@ export class DetailsVisitingPage extends React.Component {
                                         {localStorage.getItem('language') == 'uk'? 'ВИДАЛИТИ': 'DELETE'}
                                     </button>
                                     <Link to={`/edit_direction/${item.id}`} className="option">{localStorage.getItem('language') == 'uk'? 'РЕДАГУВАТИ': 'EDIT'}</Link>
+                                    <button onClick={(e)=>printDirection(item.id, e)} className="option">
+                                        {localStorage.getItem('language') == 'uk'? 'ДРУКУВАТИ': 'PRINT'}
+                                    </button>
                                 </td>
                             </tr>
                         ))}
@@ -84,4 +90,12 @@ function deleteDirection(id, e) {
             .then(()=>window.location.reload());
         window.location.reload();
     }
+}
+
+function printVisiting(id, e){
+    visitingService.printVisiting(id).then(() => alert('Success print visiting'));
+}
+
+function printDirection(id, e){
+    directionService.printDirection(id).then(() => alert('Success print direction'));
 }

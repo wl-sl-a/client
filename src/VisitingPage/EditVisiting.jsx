@@ -117,22 +117,22 @@ export class EditVisiting extends React.Component {
                         <tr><td></td></tr>
                         <tr>
                             <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Діагноз': 'Diagnosis'}</td>
-                            <input id="diagnosis" name="theDiagnosis" type="text" onChange={this.handleDiagnosisChange} value={ this.state.diagnosis }/>
+                            <textarea id="diagnosis" name="theDiagnosis" onChange={this.handleDiagnosisChange} value={ this.state.diagnosis }/>
                         </tr>
                         <tr><td></td></tr>
                         <tr>
                             <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Аналізи': 'Analyzes'}</td>
-                            <input id="analyzes" name="theAnalyzes" type="text" onChange={this.handleAnalyzesChange} value={ this.state.analyzes }/>
+                            <textarea id="analyzes" name="theAnalyzes" onChange={this.handleAnalyzesChange} value={ this.state.analyzes }/>
                         </tr>
                         <tr><td></td></tr>
                         <tr>
                             <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Обстеження': 'Examination'}</td>
-                            <input id="examination" name="theExamination" type="text" onChange={this.handleExaminationChange} value={ this.state.examination }/>
+                            <textarea id="examination" name="theExamination" onChange={this.handleExaminationChange} value={ this.state.examination }/>
                         </tr>
                         <tr><td></td></tr>
                         <tr>
                             <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Медикаменти': 'Medicines'}</td>
-                            <input id="medicines" name="theMedicines" type="text" onChange={this.handleMedicinesChange} value={ this.state.medicines }/>
+                            <textarea id="medicines" name="theMedicines" onChange={this.handleMedicinesChange} value={ this.state.medicines }/>
                         </tr>
                         <tr><td height="20"></td></tr>
                         <tr>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {animalService, visitingService} from "../_services";
+import {animalService, appointmentService, visitingService} from "../_services";
 import {Link} from "react-router-dom";
 
 export class DetailsAnimalPage extends React.Component {
@@ -7,7 +7,8 @@ export class DetailsAnimalPage extends React.Component {
         super(props);
         this.state = {
             items: [],
-            visitings: []
+            visitings: [],
+            appointments: []
         };
     }
 
@@ -18,12 +19,16 @@ export class DetailsAnimalPage extends React.Component {
         visitingService.getVisitingsByAnimalId(this.props.match.params.id)
             .then(res => res.json())
             .then(result => this.setState({visitings : result}))
+        appointmentService.getAppointmentsByAnimalId(this.props.match.params.id)
+            .then(res => res.json())
+            .then(result => this.setState({appointments : result}))
     }
 
     render() {
         document.getElementById('menu').hidden = false
         const items = this.state.items;
         const visitings = this.state.visitings;
+        const appointments = this.state.appointments;
         console.log(items);
         return (
             <div className="col-md-6 col-md-offset-3">
@@ -45,9 +50,9 @@ export class DetailsAnimalPage extends React.Component {
                         <thead>
                         <tr>
                             <th style={{ width: '10%' }}>Id</th>
-                            <th style={{ width: '30%' }}>{localStorage.getItem('language') == 'uk'? 'Тварина': 'Animal Id'}</th>
-                            <th style={{ width: '30%' }}>{localStorage.getItem('language') == 'uk'? 'Лікар': 'Doctor Id'}</th>
-                            <th style={{ width: '10%' }}>{localStorage.getItem('language') == 'uk'? 'Дата': 'Date'}</th>
+                            <th style={{ width: '25%' }}>{localStorage.getItem('language') == 'uk'? 'Тварина': 'Animal Id'}</th>
+                            <th style={{ width: '25%' }}>{localStorage.getItem('language') == 'uk'? 'Лікар': 'Doctor Id'}</th>
+                            <th style={{ width: '30%' }}>{localStorage.getItem('language') == 'uk'? 'Дата': 'Date'}</th>
                             <th style={{ width: '10%' }}>{localStorage.getItem('language') == 'uk'? 'Час': 'Time'}</th>
                         </tr>
 
@@ -57,7 +62,7 @@ export class DetailsAnimalPage extends React.Component {
                             <tr key={item.id}>
                                 <td>{item.id} </td>
                                 <td>{item.animalId}</td>
-                                <td>{item.doctorId}</td>
+                                <td><Link to={`/doctor/${item.doctorId}`}>{item.doctorId}</Link></td>
                                 <td>{item.date}</td>
                                 <td>{item.time} </td>
                                 <td style={{ whiteSpace: 'nowrap' }}>
@@ -72,7 +77,50 @@ export class DetailsAnimalPage extends React.Component {
                         </tbody>
                     </table>
                 </div>
+                <br></br><br></br><br></br>
+                <div>
+                    <div className="zag"><h1>{localStorage.getItem('language') == 'uk'? 'Записи на прийом': 'Appointments'}</h1></div>
+                    <table className="table table-striped">
+                        <thead>
+                        <tr>
+                            <th style={{ width: '10%' }}>Id</th>
+                            <th style={{ width: '30%' }}>{localStorage.getItem('language') == 'uk'? 'Тварина': 'Animal Id'}</th>
+                            <th style={{ width: '30%' }}>{localStorage.getItem('language') == 'uk'? 'Лікар': 'Doctor Id'}</th>
+                            <th style={{ width: '10%' }}>{localStorage.getItem('language') == 'uk'? 'Дата': 'Date'}</th>
+                            <th style={{ width: '10%' }}>{localStorage.getItem('language') == 'uk'? 'Час': 'Time'}</th>
+                            <th style={{ width: '10%' }}>{localStorage.getItem('language') == 'uk'? 'Послуга': 'Service Id'}</th>
+                            <th style={{ width: '10%' }}>{localStorage.getItem('language') == 'uk'? 'Status': 'Status'}</th>
+                        </tr>
+
+                        </thead>
+                        <tbody>
+                        {appointments.map(item => (
+                            <tr key={item.id}>
+                                <td>{item.id} </td>
+                                <td><Link to={`/animal/${item.animalId}`}>{item.animalId}</Link> </td>
+                                <td><Link to={`/doctor/${item.doctorId}`}>{item.doctorId}</Link></td>
+                                <td>{item.date}</td>
+                                <td>{item.time} </td>
+                                <td><Link to={`/service/${item.serviceId}`}>{item.serviceId}</Link></td>
+                                <td>{item.status} </td>
+                                <td style={{ whiteSpace: 'nowrap' }}>
+                                    <button onClick={(e)=>cancelAppointment(item.id, e)} className="option">
+                                        {localStorage.getItem('language') == 'uk'? 'ВІДМІНИТИ': 'CANCEL'}
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         )
+    }
+}
+function cancelAppointment(id, e) {
+    if(window.confirm(`${localStorage.getItem('language') == 'uk'? 'Ви впевнені, що відміняєте запис на прийом номер ':
+        'Are you sure that you cancel appointment number '}${id}?`)){
+        appointmentService.cancelAppointment(id).then(r => console.log(r));
+        window.location.reload();
     }
 }

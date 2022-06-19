@@ -807,3 +807,33 @@ label{
     font-family: 'Inconsolata', monospace;
     font-size: 20px;
 }
+
+.lang{
+    color: #A6D8CB;
+}
+
+textarea{
+    width: 500px;
+    height: 100px;
+}
+
+.flex-item1 div {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    margin-left: 5%;
+}
+
+.comment1 {
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+}
+
+.comment2 {
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+    height: 250px;
+}

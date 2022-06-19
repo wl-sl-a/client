@@ -45,7 +45,7 @@ class VisitingPage extends React.Component {
                     <thead>
                     <tr>
                         <th style={{ width: '10%' }}>Id</th>
-                        <th style={{ width: '30%' }}>{localStorage.getItem('language') == 'uk'? 'Тварина': 'Animal Id'}
+                        <th style={{ width: '15%' }}>{localStorage.getItem('language') == 'uk'? 'Тварина': 'Animal Id'}
                             <br></br>
                             <select id="animalId" name="theAnimalId" type="text" onChange={this.handleAnimalIdChange} value={ this.state.animalId }>
                                 {
@@ -55,8 +55,8 @@ class VisitingPage extends React.Component {
                                 }
                             </select>
                         </th>
-                        <th style={{ width: '30%' }}>{localStorage.getItem('language') == 'uk'? 'Лікар': 'Doctor Id'}</th>
-                        <th style={{ width: '10%' }}>{localStorage.getItem('language') == 'uk'? 'Дата': 'Date'}</th>
+                        <th style={{ width: '15%' }}>{localStorage.getItem('language') == 'uk'? 'Лікар': 'Doctor Id'}</th>
+                        <th style={{ width: '20%' }}>{localStorage.getItem('language') == 'uk'? 'Дата': 'Date'}</th>
                         <th style={{ width: '10%' }}>{localStorage.getItem('language') == 'uk'? 'Час': 'Time'}</th>
                     </tr>
 

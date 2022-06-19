@@ -111,7 +111,7 @@ export class DetailsDoctorPage extends React.Component {
                             <td>{item.id} </td>
                             <td>{item.time}</td>
                             <td>{item.status} </td>
-                            <td>{item.appointment}</td>
+                            <td><Link to={`/appointment/${item.appointment}`}>{item.appointment}</Link></td>
                         </tr>
                     ))}
                     </tbody>

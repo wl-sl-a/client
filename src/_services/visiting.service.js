@@ -7,7 +7,8 @@ export const visitingService = {
     createVisiting,
     editVisiting,
     getVisitingsByAnimalId,
-    getVisitingsByDoctorId
+    getVisitingsByDoctorId,
+    printVisiting
 };
 
 function getAll() {
@@ -69,4 +70,13 @@ function getVisitingsByAnimalId(id) {
     };
 
     return fetch(config.apiUrl + '/api/Visiting/animal/' + id, requestOptions);
+}
+
+function printVisiting(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(config.apiUrl + '/api/Print/visiting/' + id, requestOptions);
 }

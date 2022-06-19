@@ -63,8 +63,8 @@ export class CreateAnimal extends React.Component {
                         </tr>
                         <tr><td height="20"></td></tr>
                         <tr>
-                            <td align="center" height="35"><button type="submit">{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
-                            <td><Link to={`/owner/${this.state.ownerId}`}>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
+                            <td><Link to={`/owner/${this.state.ownerId}`} className='option'>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
+                            <td align="center" height="35"><button type="submit" className='option'>{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
                         </tr>
                     </div>
                 </table>

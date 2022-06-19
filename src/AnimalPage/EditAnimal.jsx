@@ -81,14 +81,15 @@ export class EditAnimal extends React.Component {
                             <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Вік': 'Age'}</td>
                             <input id="age" name="theAge" type="text" onChange={this.handleAgeChange} value={ this.state.age }/>
                         </tr>
+                        <tr><td></td></tr>
                         <tr>
                             <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Вид': 'Kind'}</td>
                             <input id="kind" name="theKind" type="text" onChange={this.handleKindChange} value={ this.state.kind }/>
                         </tr>
                         <tr><td height="20"></td></tr>
                         <tr>
-                            <td align="center" height="35"><button type="submit">{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
-                            <td><Link to={`/owner/${this.state.ownerId}`}>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
+                            <td><Link to={`/owner/${this.state.ownerId}`} className='option'>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
+                            <td align="center" height="35"><button type="submit" className='option'>{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
                         </tr>
                     </div>
                 </table>

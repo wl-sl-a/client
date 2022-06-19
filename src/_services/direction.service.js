@@ -7,7 +7,8 @@ export const directionService = {
     createDirection,
     editDirection,
     getDirectionsByAnimalId,
-    getDirectionsByVisitingId
+    getDirectionsByVisitingId,
+    printDirection
 };
 
 function getAll() {
@@ -69,4 +70,13 @@ function getDirectionsByVisitingId(id) {
     };
 
     return fetch(config.apiUrl + '/api/Direction/visiting/' + id, requestOptions);
+}
+
+function printDirection(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(config.apiUrl + '/api/Print/direction/' + id, requestOptions);
 }

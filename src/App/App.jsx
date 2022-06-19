@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { history } from '../_helpers';
+import {changeMenu, history} from '../_helpers';
 import { alertActions } from '../_actions';
 import { PrivateRoute } from '../_components';
 import { HomePage } from '../HomePage';
@@ -35,6 +35,7 @@ import {StepOnePage} from "../AppointmentPage";
 import {StepTwoPage} from "../AppointmentPage";
 import {StepThreePage} from "../AppointmentPage";
 import {AppointmentPage} from "../AppointmentPage";
+import {DetailsAppointmentPage} from "../AppointmentPage";
 
 class App extends React.Component {
     constructor(props) {
@@ -48,6 +49,7 @@ class App extends React.Component {
     }
 
     render() {
+        changeMenu()
         const { alert } = this.props;
         return (
             <div className="jumbotron">
@@ -89,6 +91,7 @@ class App extends React.Component {
                                 <Route path="/step_two/:aid/:did" component={StepTwoPage} />
                                 <Route path="/step_three/:aid/:did/:sid" component={StepThreePage} />
                                 <Route path="/appointments" component={AppointmentPage} />
+                                <Route path="/appointment/:id" component={DetailsAppointmentPage} />
                             </div>
                         </Router>
                     </div>

@@ -6,7 +6,6 @@ export const userService = {
     register,
     getAll,
     getById,
-    update,
     delete: _delete
 };
 
@@ -63,17 +62,7 @@ function register(user) {
     return fetch(config.apiUrl + '/api/authenticate/register-company ', requestOptions).then(handleResponse, handleError);
 }
 
-function update(user) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    };
 
-    return fetch(config.apiUrl + '/users/' + user.id, requestOptions).then(handleResponse, handleError);
-}
-
-// prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
     const requestOptions = {
         method: 'DELETE',
