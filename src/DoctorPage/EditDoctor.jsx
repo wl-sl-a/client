@@ -86,8 +86,8 @@ export class EditDoctor extends React.Component {
                         </tr>
                         <tr><td height="20"></td></tr>
                         <tr>
-                            <td align="center" height="35"><button type="submit">{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
-                            <td><Link to="/doctors">{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
+                            <td align="center" height="35"><button type="submit" className='option'>{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
+                            <td><Link to="/doctors" className='option'>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
                         </tr>
                     </div>
                 </table>
@@ -110,9 +110,8 @@ export class EditDoctor extends React.Component {
             .then(res => res.json())
             .then(result => data = result)
             .catch((error) => alert( error.response.request._response ) );
+        alert("Data is successfully updated")
+        history.push('/doctors');
 
-        history.push('/doctors');
-        history.push('/doctors');
-        window.location.reload();
     };
 }

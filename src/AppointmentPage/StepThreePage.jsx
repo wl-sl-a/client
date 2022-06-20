@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {appointmentService, ownerService, scheduleService} from "../_services";
+import {
+    animalService,
+    appointmentService,
+    doctorService,
+    scheduleService,
+    servService
+} from "../_services";
 
 class StepThreePage extends React.Component {
     constructor(props) {
@@ -12,7 +18,10 @@ class StepThreePage extends React.Component {
             doctor_id: this.props.match.params.did,
             service_id: this.props.match.params.sid,
             date: '',
-            time: ''
+            time: '',
+            animal: [],
+            doctor: [],
+            service: []
         };
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
@@ -36,19 +45,32 @@ class StepThreePage extends React.Component {
         scheduleService.getDates(this.state.doctor_id)
             .then(res => res.json())
             .then(result => this.setState({dates : result}))
+
+        animalService.getById(this.props.match.params.aid)
+            .then(res => res.json())
+            .then(result => this.setState({animal : result}))
+        doctorService.getById(this.props.match.params.did)
+            .then(res => res.json())
+            .then(result => this.setState({doctor : result}))
+        servService.getById(this.props.match.params.sid)
+            .then(res => res.json())
+            .then(result => this.setState({service : result}))
     }
 
     render() {
         document.getElementById('doctors').className = 'active'
         const dates = this.state.dates;
         const times = this.state.times;
+        const animal = this.state.animal;
+        const doctor = this.state.doctor;
+        const service = this.state.service;
         return (
             <div>
                 <div className="zag"><h1>{localStorage.getItem('language') == 'uk'? 'Крок 3. Оберіть дату та час': 'Step 3. Choose date and time'}</h1></div>
                 <br></br>
-                <h3>{localStorage.getItem('language') == 'uk'? 'Тварина № ': 'Animal # '} {this.state.animal_id}</h3>
-                <h3>{localStorage.getItem('language') == 'uk'? 'Лікар № ': 'Doctor # '} {this.state.doctor_id}</h3>
-                <h3>{localStorage.getItem('language') == 'uk'? 'Послуга № ': 'Service # '} {this.state.service_id}</h3>
+                <h3>{localStorage.getItem('language') == 'uk'? 'Тварина № ': 'Animal # '} {this.state.animal_id} {animal.name}</h3>
+                <h3>{localStorage.getItem('language') == 'uk'? 'Лікар № ': 'Doctor # '} {this.state.doctor_id} {doctor.surname} {doctor.name}</h3>
+                <h3>{localStorage.getItem('language') == 'uk'? 'Послуга № ': 'Service # '} {this.state.service_id} {service.name}</h3>
                 <br></br>
                 <form onSubmit={ this.onFormSubmit } >
                     <h2>{localStorage.getItem('language') == 'uk'? 'Оберіть дату: ': 'Choose date: '}</h2>
@@ -74,7 +96,7 @@ class StepThreePage extends React.Component {
                     </select>
                     <br></br>
                     <br></br>
-                    <button type="submit" className='option'>{localStorage.getItem('language') == 'uk'? 'Записатися': 'Name appointment'}</button>
+                    <button type="submit" className='option'>{localStorage.getItem('language') == 'uk'? 'Записатися': 'Make appointment'}</button>
                 </form>
             </div>
         )

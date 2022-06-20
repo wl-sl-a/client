@@ -121,6 +121,7 @@ function cancelAppointment(id, e) {
     if(window.confirm(`${localStorage.getItem('language') == 'uk'? 'Ви впевнені, що відміняєте запис на прийом номер ':
         'Are you sure that you cancel appointment number '}${id}?`)){
         appointmentService.cancelAppointment(id).then(r => console.log(r));
+        alert("Appointment is cancelled")
         window.location.reload();
     }
 }

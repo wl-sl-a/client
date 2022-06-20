@@ -112,7 +112,7 @@ export class EditAnimal extends React.Component {
             .then(res => {res.json(); history.push(`/owner/${ownerId}`);})
             .then(result => data = result)
             .catch((error) => alert( error.response.request._response ) );
-        history.push(`/owner/${ownerId}`);
+        alert("Data is update successfully")
         history.push(`/owner/${ownerId}`);
     };
 }

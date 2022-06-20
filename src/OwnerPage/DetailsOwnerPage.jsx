@@ -82,8 +82,8 @@ export class DetailsOwnerPage extends React.Component {
 function deleteAnimal(id, e) {
     if(window.confirm(`${localStorage.getItem('language') == 'uk'? 'Ви впевнені, що хочете видалити дані про тварину номер ':
         'Are you sure that you want delete animal number '}${id}?`)){
-        animalService.deleteAnimal(id).then(() => this.setState({animals: this.state.animals.filter(x=>x.id !== id)}))
-            .then(()=>window.location.reload());
+        animalService.deleteAnimal(id).then(() => this.setState({animals: this.state.animals.filter(x=>x.id !== id)}));
+        alert("Data is deleted successfully")
         window.location.reload();
     }
 }

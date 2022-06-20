@@ -86,8 +86,8 @@ class DoctorPage extends React.Component {
 function deleteDoctor(id, e) {
     if(window.confirm(`${localStorage.getItem('language') == 'uk'? 'Ви впевнені, що хочете видалити дані про лікаря номер ':
         'Are you sure that you want delete doctor number '}${id}?`)){
-        doctorService.deleteDoctor(id).then(() => this.setState({items: this.state.items.filter(x=>x.id !== id)}))
-            .then(()=>window.location.reload());
+        doctorService.deleteDoctor(id).then(() => this.setState({items: this.state.items.filter(x=>x.id !== id)}));
+        alert("Data is deleted successfully")
         window.location.reload();
     }
 }

@@ -88,6 +88,7 @@ function deleteVisiting(id, e) {
     if(window.confirm(`${localStorage.getItem('language') == 'uk'? 'Ви впевнені, що хочете видалити дані про прийом номер ':
         'Are you sure that you want delete visiting number '}${id}?`)){
         visitingService.deleteVisiting(id).then(r => console.log(r));
+        alert("Data is deleted sussessfully")
         window.location.reload();
     }
 }

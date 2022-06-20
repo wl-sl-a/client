@@ -84,8 +84,8 @@ class ServicePage extends React.Component {
 function deleteService(id, e) {
     if(window.confirm(`${localStorage.getItem('language') == 'uk'? 'Ви впевнені, що хочете видалити дані про послуги номер ':
         'Are you sure that you want delete service number '}${id}?`)){
-        servService.deleteService(id).then(() => this.setState({items: this.state.items.filter(x=>x.id !== id)}))
-            .then(()=>window.location.reload());
+        servService.deleteService(id).then(() => this.setState({items: this.state.items.filter(x=>x.id !== id)}));
+        alert("Data is deleted successfully")
         window.location.reload();
     }
 }

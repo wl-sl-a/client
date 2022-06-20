@@ -48,13 +48,12 @@ class RegisterPage extends React.Component {
         const { registering  } = this.props;
         const { user, submitted } = this.state;
         return (
-            <div className="container">
-                <div className="row">
                     <div className="col-md-offset-3 col-md-6">
                         <form className="form-horizontal" onSubmit={this.handleSubmit}>
                             <span className="heading">{localStorage.getItem('language') == 'uk'? 'Реєстрація': 'Register'}</span>
                             <div className={'form-group' + (submitted && !user.username ? ' has-error' : '')}>
                                 <label htmlFor="username">{localStorage.getItem('language') == 'uk'? 'Ім`я користувача': 'Username'}</label>
+                                <br></br>
                                 <input type="text" className="form-control" name="username"
                                        pattern="[a-zA-Z0-9_-]{4,20}" autofocus required title={localStorage.getItem('language') == 'uk'? 'Введіть від 4 до 20 символів':
                                     'Enter from 4 to 20 symbols'}
@@ -65,6 +64,7 @@ class RegisterPage extends React.Component {
                             </div>
                             <div className={'form-group' + (submitted && !user.email ? ' has-error' : '')}>
                                 <label htmlFor="email">{localStorage.getItem('language') == 'uk'? 'Електронна пошта': 'Email'}</label>
+                                <br></br>
                                 <input type="text" className="form-control" name="email"
                                        pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$"
                                        autofocus required title={localStorage.getItem('language') == 'uk'? 'Невірний формат ел.пошти': 'Invalid email format'}
@@ -75,6 +75,7 @@ class RegisterPage extends React.Component {
                             </div>
                             <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
                                 <label htmlFor="password">{localStorage.getItem('language') == 'uk'? 'Пароль': 'Password'}</label>
+                                <br></br>
                                 <input type="password" className="form-control" name="password"
                                        pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                                        autofocus required title={localStorage.getItem('language') == 'uk'? 'Невірний формат паролю': 'Invalid password format'}
@@ -84,13 +85,11 @@ class RegisterPage extends React.Component {
                                 }
                             </div>
                             <div className="form-group">
-                                <button className="btn btn-primary">{localStorage.getItem('language') == 'uk'? 'Зареєструватися': 'Register'}</button>
-                                <Link to="/login"><span className="text">{localStorage.getItem('language') == 'uk'? 'Відміна': 'Cancel'}</span></Link>
+                                <button className='option'>{localStorage.getItem('language') == 'uk'? 'Зареєструватися': 'Register'}</button>
+                                <Link to="/login" className='option'><span className="text">{localStorage.getItem('language') == 'uk'? 'Відміна': 'Cancel'}</span></Link>
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
         );
     }
 }

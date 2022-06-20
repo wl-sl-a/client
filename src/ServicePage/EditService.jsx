@@ -74,8 +74,8 @@ export class EditService extends React.Component {
                         </tr>
                         <tr><td height="20"></td></tr>
                         <tr>
-                            <td align="center" height="35"><button type="submit">{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
-                            <td><Link to="/services">{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
+                            <td align="center" height="35"><button type="submit" className='option'>{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
+                            <td><Link to="/services" className='option'>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
                         </tr>
                     </div>
                 </table>
@@ -98,7 +98,7 @@ export class EditService extends React.Component {
             .catch((error) => alert( error.response.request._response ) );
 
         history.push('/services');
-        history.push('/services');
+        alert("Data is successfully updated")
         window.location.reload();
     };
 }

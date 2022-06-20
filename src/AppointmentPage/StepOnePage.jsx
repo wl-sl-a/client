@@ -1,5 +1,5 @@
 import React from 'react';
-import { doctorService } from '../_services';
+import {animalService, doctorService} from '../_services';
 import { Link } from 'react-router-dom';
 
 class StepOnePage extends React.Component {
@@ -7,25 +7,53 @@ class StepOnePage extends React.Component {
         super(props);
         this.state = {
             items: [],
-            animal_id: this.props.match.params.aid
+            animal_id: this.props.match.params.aid,
+            animal:[]
         };
+        this.handleSearchChange = this.handleSearchChange.bind(this);
+    }
+
+    handleSearchChange(event){
+        this.setState({ param: event.target.value });
+        if(event.target.value.length > 0){
+            doctorService.searchDoctor(event.target.value)
+                .then(res => res.json())
+                .then(result => this.setState({items : result}))
+        } else{
+            doctorService.getAll()
+                .then(res => res.json())
+                .then(result => this.setState({items : result}))
+        }
     }
 
     componentDidMount() {
         doctorService.getAll()
             .then(res => res.json())
             .then(result => this.setState({items : result}))
+
+        animalService.getById(this.props.match.params.aid)
+            .then(res => res.json())
+            .then(result => this.setState({animal : result}))
     }
     render() {
         document.getElementById('doctors').className = 'active'
         const items = this.state.items;
+        const animal = this.state.animal;
         console.log(items);
         return (
             <div>
                 <div className="zag"><h1>{localStorage.getItem('language') == 'uk'? 'Крок 1. Оберіть лікаря': 'Step 1. Choose a doctor'}</h1></div>
                 <br></br>
-                <h3>{localStorage.getItem('language') == 'uk'? 'Тварина № ': 'Animal # '} {this.state.animal_id}</h3>
+                <h3>{localStorage.getItem('language') == 'uk'? 'Тварина № ': 'Animal # '} {this.state.animal_id} {animal.name}</h3>
                 <br></br>
+                <div className="Search">
+                    <span className="SearchSpan"><div className='fa fa-search'></div></span>
+                    <input
+                        className="SearchInput"
+                        type="text"
+                        onChange={this.handleSearchChange}
+                    />
+                </div>
                 <table className="table table-striped">
                     <thead>
                     <tr>
