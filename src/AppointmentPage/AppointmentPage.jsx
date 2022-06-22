@@ -199,7 +199,8 @@ function confirmAppointment(id, e) {
     if(window.confirm(`${localStorage.getItem('language') == 'uk'? 'Ви впевнені, що підтверджуєте запис на прийом номер ':
         'Are you sure that you confirm appointment number '}${id}?`)){
         appointmentService.confirmAppointment(id).then(r => console.log(r));
-        alert("Appointment is cancelled")
+        alert("Appointment is confirmed")
+        window.location.reload();
     }
 }
 function reset(e){

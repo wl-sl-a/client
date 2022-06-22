@@ -1,6 +1,7 @@
 import React from 'react';
 import {visitingService, directionService} from "../_services";
 import {Link} from "react-router-dom";
+import { Document, Page } from 'react-pdf';
 
 export class DetailsVisitingPage extends React.Component {
     constructor(props) {
@@ -93,9 +94,23 @@ function deleteDirection(id, e) {
 }
 
 function printVisiting(id, e){
-    visitingService.printVisiting(id).then(() => alert('Success print visiting'));
+    visitingService.printVisiting(id).then((response) => response.blob())
+        .then((blob) => {
+            const file = new Blob([blob], {
+                type: 'application/pdf',
+            });
+            const fileURL = URL.createObjectURL(file);
+            window.open(fileURL);
+        })
 }
 
 function printDirection(id, e){
-    directionService.printDirection(id).then(() => alert('Success print direction'));
+    directionService.printDirection(id).then((response) => response.blob())
+        .then((blob) => {
+            const file = new Blob([blob], {
+                type: 'application/pdf',
+            });
+            const fileURL = URL.createObjectURL(file);
+            window.open(fileURL);
+        })
 }

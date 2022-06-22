@@ -62,7 +62,7 @@ export class CreateDoctor extends React.Component {
                         <tr><td height="20"></td></tr>
                         <tr>
                             <td align="center" height="35"><button type="submit" className='option'>{localStorage.getItem('language') == 'uk'? 'Зберегти': 'Save'}</button></td>
-                            <td><Link to="/doctors">{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
+                            <td><Link to="/doctors" className='option'>{localStorage.getItem('language') == 'uk'? 'Вийти': 'Exit'}</Link></td>
                         </tr>
                     </div>
                 </table>

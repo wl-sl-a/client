@@ -70,7 +70,7 @@ export class EditService extends React.Component {
                         </tr>
                         <tr>
                             <td align="left" height="35">{localStorage.getItem('language') == 'uk'? 'Інформація': 'Info'}</td>
-                            <input id="info" name="theInfo" type="text" onChange={this.handleInfoChange} value={ this.state.info }/>
+                            <textarea id="info" name="theInfo" onChange={this.handleInfoChange} value={ this.state.info }/>
                         </tr>
                         <tr><td height="20"></td></tr>
                         <tr>

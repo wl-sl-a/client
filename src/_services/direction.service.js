@@ -75,7 +75,7 @@ function getDirectionsByVisitingId(id) {
 function printDirection(id) {
     const requestOptions = {
         method: 'GET',
-        headers: authHeader()
+        headers: { ...authHeader(), 'Content-Type': 'application/pdf' }
     };
 
     return fetch(config.apiUrl + '/api/Print/direction/' + id, requestOptions);

@@ -75,7 +75,7 @@ function getVisitingsByAnimalId(id) {
 function printVisiting(id) {
     const requestOptions = {
         method: 'GET',
-        headers: authHeader()
+        headers: { ...authHeader(), 'Content-Type': 'application/pdf' },
     };
 
     return fetch(config.apiUrl + '/api/Print/visiting/' + id, requestOptions);
